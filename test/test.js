@@ -50,6 +50,11 @@ describe('Units', () => {
         Units.convertBTC('test', 'btc', 'random');
       }, /^Error: Unsupported value$/);
     });
+    it('should fail on invalid input resulting in a decimal error', () => {
+      assert.throws(() => {
+        Units.convertBTC('0.000000001', 'btc', 'satoshi');
+      }, /^Error: Unsupported decimal points. Satoshis must be an integer.$/);
+    });
     it('should work with decimal first numbers', () => {
       assert.equal(Units.convertBTC('.1', 'btc', 'satoshi'), '10000000');
     });
@@ -105,6 +110,11 @@ describe('Units', () => {
         Units.convertBCH('test', 'bch', 'random');
       }, /^Error: Unsupported value$/);
     });
+    it('should fail on invalid input resulting in a decimal error', () => {
+      assert.throws(() => {
+        Units.convertBCH('0.000000001', 'bch', 'satoshi');
+      }, /^Error: Unsupported decimal points. Satoshis must be an integer.$/);
+    });
     it('should work with decimal first numbers', () => {
       assert.equal(Units.convertBCH('.1', 'bch', 'satoshi'), '10000000');
     });
@@ -158,6 +168,11 @@ describe('Units', () => {
         Units.convertETH('test', 'eth', 'random');
       }, /^Error: Unsupported value$/);
     });
+    it('should fail on invalid input resulting in a decimal error', () => {
+      assert.throws(() => {
+        Units.convertETH('0.0000000000000000001', 'eth', 'wei');
+      }, /^Error: Unsupported decimal points. Wei must be an integer.$/);
+    });
     it('should work with decimal first numbers', () => {
       assert.equal(Units.convertETH('.1', 'eth', 'wei'), '100000000000000000');
     });
@@ -193,6 +208,11 @@ describe('Units', () => {
       assert.throws(function () {
         Units.convertXRP('test', 'xrp', 'random');
       }, /^Error: Unsupported value$/);
+    });
+    it('should fail on invalid input resulting in a decimal error', () => {
+      assert.throws(() => {
+        Units.convertXRP('0.0000001', 'xrp', 'drop');
+      }, /^Error: Unsupported decimal points. Drop must be an integer.$/);
     });
     it('should work with decimal first numbers', () => {
       assert.equal(Units.convertXRP('.1', 'xrp', 'drop'), '100000');
@@ -232,6 +252,11 @@ describe('Units', () => {
         Units.convertLTC('test', 'ltc', 'random');
       }, /^Error: Unsupported value$/);
     });
+    it('should fail on invalid input resulting in a decimal error', () => {
+      assert.throws(() => {
+        Units.convertLTC('0.000000001', 'ltc', 'litoshi');
+      }, /^Error: Unsupported decimal points. Litoshi must be an integer.$/);
+    });
     it('should work with decimal first numbers', () => {
       assert.equal(Units.convertLTC('.1', 'ltc', 'litoshi'), '10000000');
     });
@@ -267,6 +292,11 @@ describe('Units', () => {
         Units.convertDASH('test', 'dash', 'random');
       }, /^Error: Unsupported value$/);
     });
+    it('should fail on invalid input resulting in a decimal error', () => {
+      assert.throws(() => {
+        Units.convertDASH('0.000000001', 'dash', 'duff');
+      }, /^Error: Unsupported decimal points. Duff must be an integer.$/);
+    });
     it('should work with decimal first numbers', () => {
       assert.equal(Units.convertDASH('.1', 'dash', 'duff'), '10000000');
     });
@@ -301,6 +331,11 @@ describe('Units', () => {
       assert.throws(function () {
         Units.convertZEC('test', 'zec', 'random');
       }, /^Error: Unsupported value$/);
+    });
+    it('should fail on invalid input resulting in a decimal error', () => {
+      assert.throws(() => {
+        Units.convertZEC('0.000000001', 'zec', 'zatoshi');
+      }, /^Error: Unsupported decimal points. Zatoshi must be an integer.$/);
     });
     it('should work with decimal first numbers', () => {
       assert.equal(Units.convertZEC('.1', 'zec', 'zatoshi'), '10000000');

@@ -68,7 +68,18 @@ Units.convertBTC = (value, from, to) => {
   if (!btcUnits[to]) {
     throw new Error('Unsupported input unit');
   }
-  return new BigNumber(value, 10).times(btcUnits[from]).div(btcUnits[to]).toString(10);
+  let decimalError = false
+  const converted = new BigNumber(value, 10).times(btcUnits[from]).div(btcUnits[to]);
+  if (to != "satoshi") {
+    const base = new BigNumber(converted.toString(10), 10).times(btcUnits[to]).div(btcUnits["satoshi"]);
+    decimalError = !base.isInteger();
+  } else {
+    decimalError = !converted.isInteger();
+  }
+  if (decimalError) {
+    throw new Error('Unsupported decimal points. Satoshis must be an integer.');
+  }
+  return converted.toString(10);
 };
 
 Units.convertBCH = (value, from, to) => {
@@ -83,7 +94,18 @@ Units.convertBCH = (value, from, to) => {
   if (!bchUnits[to]) {
     throw new Error('Unsupported input unit');
   }
-  return new BigNumber(value, 10).times(bchUnits[from]).div(bchUnits[to]).toString(10);
+  let decimalError = false
+  const converted = new BigNumber(value, 10).times(bchUnits[from]).div(bchUnits[to]);
+  if (to != "satoshi") {
+    const base = new BigNumber(converted.toString(10), 10).times(bchUnits[to]).div(bchUnits["satoshi"]);
+    decimalError = !base.isInteger();
+  } else {
+    decimalError = !converted.isInteger();
+  }
+  if (decimalError) {
+    throw new Error('Unsupported decimal points. Satoshis must be an integer.');
+  }
+  return converted.toString(10);
 };
 
 Units.convertETH = (value, from, to) => {
@@ -98,7 +120,18 @@ Units.convertETH = (value, from, to) => {
   if (!ethUnits[to]) {
     throw new Error('Unsupported input unit');
   }
-  return new BigNumber(value, 10).times(ethUnits[from]).div(ethUnits[to]).toString(10);
+  let decimalError = false
+  const converted = new BigNumber(value, 10).times(ethUnits[from]).div(ethUnits[to]);
+  if (to != "wei") {
+    const base = new BigNumber(converted.toString(10), 10).times(ethUnits[to]).div(ethUnits["wei"]);
+    decimalError = !base.isInteger();
+  } else {
+    decimalError = !converted.isInteger();
+  }
+  if (decimalError) {
+    throw new Error('Unsupported decimal points. Wei must be an integer.');
+  }
+  return converted.toString(10);
 };
 
 Units.convertXRP = (value, from, to) => {
@@ -113,7 +146,18 @@ Units.convertXRP = (value, from, to) => {
   if (!xrpUnits[to]) {
     throw new Error('Unsupported input unit');
   }
-  return new BigNumber(value).times(xrpUnits[from]).div(xrpUnits[to]).toString(10);
+  let decimalError = false
+  const converted = new BigNumber(value, 10).times(xrpUnits[from]).div(xrpUnits[to]);
+  if (to != "drop") {
+    const base = new BigNumber(converted.toString(10), 10).times(xrpUnits[to]).div(xrpUnits["drop"]);
+    decimalError = !base.isInteger();
+  } else {
+    decimalError = !converted.isInteger();
+  }
+  if (decimalError) {
+    throw new Error('Unsupported decimal points. Drop must be an integer.');
+  }
+  return converted.toString(10);
 };
 
 Units.convertLTC = (value, from, to) => {
@@ -128,7 +172,18 @@ Units.convertLTC = (value, from, to) => {
   if (!ltcUnits[to]) {
     throw new Error('Unsupported input unit');
   }
-  return new BigNumber(value, 10).times(ltcUnits[from]).div(ltcUnits[to]).toString(10);
+  let decimalError = false
+  const converted = new BigNumber(value, 10).times(ltcUnits[from]).div(ltcUnits[to]);
+  if (to != "litoshi") {
+    const base = new BigNumber(converted.toString(10), 10).times(ltcUnits[to]).div(ltcUnits["litoshi"]);
+    decimalError = !base.isInteger();
+  } else {
+    decimalError = !converted.isInteger();
+  }
+  if (decimalError) {
+    throw new Error('Unsupported decimal points. Litoshi must be an integer.');
+  }
+  return converted.toString(10);
 };
 
 Units.convertDASH = (value, from, to) => {
@@ -143,7 +198,18 @@ Units.convertDASH = (value, from, to) => {
   if (!dashUnits[to]) {
     throw new Error('Unsupported input unit');
   }
-  return new BigNumber(value, 10).times(dashUnits[from]).div(dashUnits[to]).toString(10);
+  let decimalError = false
+  const converted = new BigNumber(value, 10).times(dashUnits[from]).div(dashUnits[to]);
+  if (to != "duff") {
+    const base = new BigNumber(converted.toString(10), 10).times(dashUnits[to]).div(dashUnits["duff"]);
+    decimalError = !base.isInteger();
+  } else {
+    decimalError = !converted.isInteger();
+  }
+  if (decimalError) {
+    throw new Error('Unsupported decimal points. Duff must be an integer.');
+  }
+  return converted.toString(10);
 };
 
 Units.convertZEC = (value, from, to) => {
@@ -158,7 +224,18 @@ Units.convertZEC = (value, from, to) => {
   if (!zecUnits[to]) {
     throw new Error('Unsupported input unit');
   }
-  return new BigNumber(value, 10).times(zecUnits[from]).div(zecUnits[to]).toString(10);
+  let decimalError = false
+  const converted = new BigNumber(value, 10).times(zecUnits[from]).div(zecUnits[to]);
+  if (to != "zatoshi") {
+    const base = new BigNumber(converted.toString(10), 10).times(zecUnits[to]).div(zecUnits["zatoshi"]);
+    decimalError = !base.isInteger();
+  } else {
+    decimalError = !converted.isInteger();
+  }
+  if (decimalError) {
+    throw new Error('Unsupported decimal points. Zatoshi must be an integer.');
+  }
+  return converted.toString(10);
 };
 
 module.exports = Units;
