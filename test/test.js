@@ -305,6 +305,86 @@ describe('Units', () => {
     });
   });
 
+  describe('convertXMR', () => {
+    it('should convert Monero big unit to small unit', () => {
+      assert.equal(Units.convertXMR('1', 'xmr', 'pxmr'), '1000000000000');
+   
+    });
+    it('should convert pXMR to bigger unit', function() {
+      assert.equal(Units.convertXMR('1', 'pxmr', 'xmr'), '0.000000000001');
+    });
+    it('should fail on invalid input pxmr', () => {
+      assert.throws(() => {
+        Units.convertXMR('1', 'random', 'pxmr');
+      }, /^Error: Unsupported input unit$/);
+    });
+    it('should fail on invalid output xmr', () => {
+      assert.throws(() => {
+        Units.convertXMR('1', 'xmr', 'random');
+      }, /^Error: Unsupported input unit$/);
+    });
+    it('should fail on non-decimal input', function () {
+      assert.throws(function () {
+        Units.convertXMR('1,00', 'xmr', 'random');
+      }, /^Error: Unsupported value$/);
+
+      assert.throws(function () {
+        Units.convertXMR('test', 'xmr', 'random');
+      }, /^Error: Unsupported value$/);
+    });
+    it('should fail on invalid input resulting in a decimal error', () => {
+      assert.throws(() => {
+        Units.convertXMR('0.0000000000001', 'xmr', 'pxmr');
+      }, /^Error: Unsupported decimal points. pXmr must be an integer.$/);
+    });
+    it('should work with decimal first numbers', () => {
+      assert.equal(Units.convertXMR('.1', 'xmr', 'pxmr'), '100000000000');
+    });
+    it('should work with any capitalization', () => {
+      assert.equal(Units.convertXMR('1', 'XmR', 'pXMR'), '1000000000000');
+    });
+  });
+
+  describe('convertDOT', () => {
+    it('should convert DOT big unit to small unit', () => {
+      assert.equal(Units.convertDOT('1', 'dot', 'planck'), '10000000000');
+   
+    });
+    it('should convert planck to bigger unit', function() {
+      assert.equal(Units.convertDOT('1', 'planck', 'dot'), '0.0000000001');
+    });
+    it('should fail on invalid input planck', () => {
+      assert.throws(() => {
+        Units.convertDOT('1', 'random', 'planck');
+      }, /^Error: Unsupported input unit$/);
+    });
+    it('should fail on invalid output DOT', () => {
+      assert.throws(() => {
+        Units.convertDOT('1', 'dot', 'random');
+      }, /^Error: Unsupported input unit$/);
+    });
+    it('should fail on non-decimal input', function () {
+      assert.throws(function () {
+        Units.convertDOT('1,00', 'dot', 'random');
+      }, /^Error: Unsupported value$/);
+
+      assert.throws(function () {
+        Units.convertDOT('test', 'dot', 'random');
+      }, /^Error: Unsupported value$/);
+    });
+    it('should fail on invalid input resulting in a decimal error', () => {
+      assert.throws(() => {
+        Units.convertDOT('0.00000000001', 'dot', 'planck');
+      }, /^Error: Unsupported decimal points. Planck must be an integer.$/);
+    });
+    it('should work with decimal first numbers', () => {
+      assert.equal(Units.convertDOT('.1', 'dot', 'planck'), '1000000000');
+    });
+    it('should work with any capitalization', () => {
+      assert.equal(Units.convertDOT('1', 'DoT', 'Planck'), '10000000000');
+    });
+  });
+
   describe('convertZEC', () => {
     it('should convert Zcash big unit to small unit', () => {
       assert.equal(Units.convertZEC('1', 'zec', 'zatoshi'), '100000000');

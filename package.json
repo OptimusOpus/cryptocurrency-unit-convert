@@ -1,5 +1,5 @@
 {
-  "name": "cryptocurrency-unit-convert",
+  "name": "crypto-units-convert",
   "version": "1.2.8",
   "description": "This package converts cryptocurrency units",
   "main": "index.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/markpenovich/cryptocurrency-unit-convert"
+    "url": "git+https://github.com/OptimusOpus/cryptocurrency-unit-convert"
   },
   "keywords": [
     "cryptocurrency",
@@ -30,7 +30,7 @@
     "convert",
     "conversion"
   ],
-  "author": "Mark Penovich <mpenovich1@gmail.com>",
+  "author": "Taylor Scheel <optimus.opus8@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "assert": "^1.5.0",
