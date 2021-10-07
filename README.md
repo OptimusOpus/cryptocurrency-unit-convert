@@ -10,7 +10,7 @@ Currently supports Bitcoin, Bitcoin Cash, Ethereum, Ripple, Litecoin, Dash, and 
 
 Install with [npm](http://blog.npmjs.org/post/85484771375/how-to-install-npm)
 ```javascript
-> npm install cryptocurrency-unit-convert --save
+> npm install crypto-unit-convert --save
 ```
 Require package into project
 ```javascript
