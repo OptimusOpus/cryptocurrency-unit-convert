@@ -14,7 +14,7 @@ Install with [npm](http://blog.npmjs.org/post/85484771375/how-to-install-npm)
 ```
 Require package into project
 ```javascript
-require('cryptocurrency-unit-convert')
+require('crypto-unit-convert')
 ```
 
 There are 7 methods:
